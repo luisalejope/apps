@@ -5,7 +5,7 @@ jobs:
       - image: google/cloud-sdk
     environment:
       - PROJECT_NAME: "infraparcial"
-      - GOOGLE_PROJECT_ID: "parcial-infra"
+      - GOOGLE_PROJECT_ID: "infraparcial"
       - GOOGLE_COMPUTE_ZONE: "us-central1-a"
       - GOOGLE_CLUSTER_NAME: "gke-us"
     steps:
