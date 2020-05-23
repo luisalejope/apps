@@ -4,10 +4,10 @@ jobs:
     docker:
       - image: google/cloud-sdk
     environment:
-      - PROJECT_NAME: "Parcial-Infra"
+      - PROJECT_NAME: "infraparcial"
       - GOOGLE_PROJECT_ID: "parcial-infra"
-      - GOOGLE_COMPUTE_ZONE: "us-central1-c"
-      - GOOGLE_CLUSTER_NAME: "development"
+      - GOOGLE_COMPUTE_ZONE: "us-central1-a"
+      - GOOGLE_CLUSTER_NAME: "gke-us"
     steps:
       - checkout
       - run: 
@@ -23,13 +23,13 @@ jobs:
       - run: 
           name: Build Docker Images
           command: |
-            docker login -u="sockshead" -p="Yosoyjcpa16."
+            docker login -u="luispemu" -p="Wissyo9886"
             cd ${HOME}/project/nodejs-app
-            docker build -t sockshead/node-app .
-            docker push sockshead/node-app
+            docker build -t luispemu/node-app .
+            docker push luispemu/node-app
             cd ../react-app/my-react-app
-            docker build -t sockshead/react-app .
-            docker push sockshead/react-app
+            docker build -t luispemu/react-app .
+            docker push luispemu/react-app
       - run: 
           name: Deploy to Kubernetes
           command: |
@@ -38,10 +38,10 @@ jobs:
     docker:
       - image: google/cloud-sdk
     environment:
-      - PROJECT_NAME: "Parcial-Infra"
-      - GOOGLE_PROJECT_ID: "parcial-infra"
-      - GOOGLE_COMPUTE_ZONE: "us-central1-c"
-      - GOOGLE_CLUSTER_NAME: "production"
+      - PROJECT_NAME: "infraparcial"
+      - GOOGLE_PROJECT_ID: "infraparcial"
+      - GOOGLE_COMPUTE_ZONE: "europe-west1-c"
+      - GOOGLE_CLUSTER_NAME: "gke-eu"
     steps:
       - checkout
       - run: 
@@ -66,13 +66,13 @@ workflows:
           filters:
             branches:
               only: master
-      - Manual-Approval:
+      - Aprobacion:
           type: approval
           requires:
             - Development
       - Production:
           requires:
-            - Manual-Approval
+            - Aprobacion
           filters:
             branches:
               only: master            
