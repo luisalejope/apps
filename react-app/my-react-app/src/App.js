@@ -8,7 +8,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Bienvenido a la aplicacion mas chingona
+          Bienvenido a la aplicacion de infra en react
         </p>
       </header>
     </div>
